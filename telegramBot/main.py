@@ -13,7 +13,7 @@ def send_welcome(message):
 	Welcome! This is an iitk helper bot, it can do various things-
 	- /start and /help : Show this message
 	- /attendance : Get your attendance
-	- /icardphoto : Get anybody's original student search photo
+	- /studentPhoto : Get anybody's original student search photo
 	- /customdp : Get anybody's Custom DP on student search
 	- /motivate : Get a motivational quote
 	""")
@@ -58,6 +58,28 @@ def attendance_ask_date(message):
 def attendance_ask_roll(message):
 	askingRoll = bot.send_message(message.chat.id, "So you're calculating if you can leave today's class?\nCool just gimme your *Roll No*", parse_mode="markdown")
 	bot.register_next_step_handler(askingRoll, attendance_ask_date)
+
+
+###############################  PHOTO  ###############################
+
+def get_SPhoto(message):
+	rollNo = re.findall("\d\d\d\d\d\d\d\d|\d\d\d\d\d\d",message.text)
+
+	if rollNo:
+
+		bot.send_message(message.chat.id, f"There you go-\noa.cc.iitk.ac.in/Oa/Jsp/Photo/{rollNo[0]}_0.jpg")
+		# bot.send_photo(message.chat.id, f"http://oa.cc.iitk.ac.in/Oa/Jsp/Photo/{rollNo[0]}_0.jpg")
+	else:
+		bot.send_message(message.chat.id, "Uhh the RollNo seems to be wrong")
+		photo_ask_rollNo(message)
+		return 0
+
+
+@bot.message_handler(commands=['studentPhoto'])
+def photo_ask_rollNo(message):
+	askingRoll = bot.send_message(message.chat.id, "Gimme a *RollNo*", parse_mode="markdown")
+	bot.register_next_step_handler(askingRoll, get_SPhoto)
+
 
 
 
