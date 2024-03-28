@@ -1,3 +1,3 @@
 /.vscode
 /references
-bot_token.py
+/telegramBot/bot_token.py
