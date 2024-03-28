@@ -1,5 +1,0 @@
-attendance
-Icard dp
-custom dp
-
-class reminders (maybe)
