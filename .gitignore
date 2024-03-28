@@ -1,0 +1,4 @@
+/.vscode
+/references
+*__pycache__*
+# /telegramBot/bot_token.py
